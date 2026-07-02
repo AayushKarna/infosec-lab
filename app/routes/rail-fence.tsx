@@ -24,11 +24,16 @@ export default function RailFence() {
   return (
     <div className="max-w-3xl space-y-6">
       <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
-        <div className="mb-4 inline-flex rounded-md border border-gray-300 dark:border-gray-700">
+        <div
+          role="group"
+          aria-label="Mode"
+          className="mb-4 inline-flex rounded-md border border-gray-300 dark:border-gray-700"
+        >
           {(["encrypt", "decrypt"] as const).map((m) => (
             <button
               key={m}
               onClick={() => setMode(m)}
+              aria-pressed={mode === m}
               className={`px-4 py-2 text-sm font-medium capitalize first:rounded-l-md last:rounded-r-md ${
                 mode === m
                   ? "bg-blue-600 text-white"
@@ -40,20 +45,28 @@ export default function RailFence() {
           ))}
         </div>
 
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="rf-text"
+          className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           {mode === "encrypt" ? "Plaintext" : "Ciphertext"}
         </label>
         <textarea
+          id="rf-text"
           value={text}
           onChange={(e) => setText(e.target.value)}
           rows={3}
           className="w-full rounded-md border border-gray-300 bg-white px-3 py-2 font-mono text-sm text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-950 dark:text-white"
         />
 
-        <label className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="rf-rails"
+          className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Rails
         </label>
         <input
+          id="rf-rails"
           type="number"
           min={2}
           max={20}
@@ -64,9 +77,9 @@ export default function RailFence() {
           className="w-24 rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-950 dark:text-white"
         />
 
-        <label className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <p className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
           {mode === "encrypt" ? "Ciphertext" : "Plaintext"}
-        </label>
+        </p>
         <div className="min-h-10 rounded-md bg-gray-100 p-3 font-mono text-sm break-all text-gray-900 dark:bg-gray-800 dark:text-gray-100">
           {result || <span className="text-gray-400">—</span>}
         </div>
@@ -78,7 +91,10 @@ export default function RailFence() {
         </h2>
         {fence ? (
           <div className="overflow-x-auto">
-            <table className="border-separate border-spacing-1 font-mono text-sm">
+            <table
+              aria-label="Rail fence zigzag grid"
+              className="border-separate border-spacing-1 font-mono text-sm"
+            >
               <tbody>
                 {fence.map((row, r) => (
                   <tr key={r}>

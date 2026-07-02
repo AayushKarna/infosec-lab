@@ -83,10 +83,14 @@ export default function Rsa() {
           1. Key generation
         </h2>
         <div className="flex flex-wrap items-center gap-3">
-          <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="rsa-bits"
+            className="text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Modulus size
           </label>
           <select
+            id="rsa-bits"
             value={bits}
             onChange={(e) => setBits(Number(e.target.value))}
             className="rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:outline-none dark:border-gray-700 dark:bg-gray-950 dark:text-white"
@@ -141,10 +145,14 @@ export default function Rsa() {
         <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
           2. Encrypt — c = mᵉ mod n
         </h2>
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="rsa-message"
+          className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Message
         </label>
         <textarea
+          id="rsa-message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
           rows={3}
@@ -168,10 +176,14 @@ export default function Rsa() {
         <h2 className="mb-3 text-sm font-semibold text-gray-900 dark:text-white">
           3. Decrypt — m = cᵈ mod n
         </h2>
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="rsa-cipher"
+          className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Ciphertext (hex blocks)
         </label>
         <textarea
+          id="rsa-cipher"
           value={cipherHex}
           onChange={(e) => setCipherHex(e.target.value)}
           rows={4}

@@ -66,10 +66,14 @@ export default function Login({ actionData }: Route.ComponentProps) {
 
         <Form ref={formRef} method="post" className="mt-4 space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="login-email"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Email
             </label>
             <input
+              id="login-email"
               type="email"
               name="email"
               required
@@ -78,10 +82,14 @@ export default function Login({ actionData }: Route.ComponentProps) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="login-password"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Password
             </label>
             <input
+              id="login-password"
               type="password"
               name="password"
               required

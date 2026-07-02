@@ -23,14 +23,19 @@ export default function Sha2() {
   return (
     <div className="max-w-3xl space-y-6">
       <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
-        <label className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <p className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
           Variant
-        </label>
-        <div className="mb-4 inline-flex max-w-full overflow-x-auto rounded-md border border-gray-300 dark:border-gray-700">
+        </p>
+        <div
+          role="group"
+          aria-label="SHA-2 variant"
+          className="mb-4 inline-flex max-w-full overflow-x-auto rounded-md border border-gray-300 dark:border-gray-700"
+        >
           {VARIANTS.map((v) => (
             <button
               key={v.name}
               onClick={() => setVariant(v.name)}
+              aria-pressed={variant === v.name}
               className={`px-4 py-2 text-sm font-medium first:rounded-l-md last:rounded-r-md ${
                 variant === v.name
                   ? "bg-blue-600 text-white"
@@ -45,10 +50,14 @@ export default function Sha2() {
           {info.bits}-bit digest, {info.blockBits}-bit blocks
         </p>
 
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="sha2-input"
+          className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Message
         </label>
         <textarea
+          id="sha2-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={5}
@@ -59,9 +68,9 @@ export default function Sha2() {
           updates as you type
         </p>
 
-        <label className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <p className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
           {variant} digest ({info.bits} bits)
-        </label>
+        </p>
         <div className="rounded-md bg-gray-100 p-3 font-mono text-sm break-all text-gray-900 dark:bg-gray-800 dark:text-gray-100">
           {digest}
         </div>

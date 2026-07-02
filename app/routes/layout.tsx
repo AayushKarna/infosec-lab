@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Form, Link, NavLink, Outlet, useLocation } from "react-router";
 import type { Route } from "./+types/layout";
 import { getUser, type User } from "../lib/auth.server";
@@ -24,13 +24,28 @@ const pageTitles: Record<string, string> = {
   ...Object.fromEntries(navLinks.map((link) => [link.to, link.label])),
 };
 
+// Closes the given menu/drawer when Escape is pressed.
+function useEscapeToClose(open: boolean, close: () => void) {
+  useEffect(() => {
+    if (!open) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") close();
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open, close]);
+}
+
 function UserMenu({ user }: { user: User }) {
   const [open, setOpen] = useState(false);
+  useEscapeToClose(open, () => setOpen(false));
 
   return (
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="true"
         className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
       >
         <span className="flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-gray-300 text-gray-600 dark:bg-gray-700 dark:text-gray-300">
@@ -62,7 +77,11 @@ function UserMenu({ user }: { user: User }) {
 
       {open && (
         <>
-          <div className="fixed inset-0 z-10" onClick={() => setOpen(false)} />
+          <div
+            aria-hidden="true"
+            className="fixed inset-0 z-10"
+            onClick={() => setOpen(false)}
+          />
           <div className="absolute right-0 z-20 mt-2 w-52 overflow-hidden rounded-md border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-900">
             <Link
               to="/profile"
@@ -139,6 +158,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
   const { user } = loaderData;
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  useEscapeToClose(sidebarOpen, () => setSidebarOpen(false));
   const title = pageTitles[location.pathname] ?? "Information Security";
 
   return (
@@ -146,6 +166,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
       {/* Mobile sidebar backdrop */}
       {sidebarOpen && (
         <div
+          aria-hidden="true"
           className="fixed inset-0 z-20 bg-black/50 md:hidden"
           onClick={() => setSidebarOpen(false)}
         />
@@ -172,7 +193,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
             <p>COMP 485</p>
           </div>
         </div>
-        <nav className="flex-1 px-3 py-4 space-y-1">
+        <nav aria-label="Topics" className="flex-1 px-3 py-4 space-y-1">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -220,6 +241,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
               onClick={() => setSidebarOpen(true)}
               className="rounded-md p-2 text-gray-700 hover:bg-gray-100 md:hidden dark:text-gray-300 dark:hover:bg-gray-800"
               aria-label="Open sidebar"
+              aria-expanded={sidebarOpen}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

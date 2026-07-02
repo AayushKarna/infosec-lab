@@ -55,10 +55,14 @@ export default function Profile({ loaderData, actionData }: Route.ComponentProps
 
         <Form method="post" className="mt-4 space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="profile-email"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Email
             </label>
             <input
+              id="profile-email"
               type="email"
               value={user.email}
               disabled
@@ -67,10 +71,14 @@ export default function Profile({ loaderData, actionData }: Route.ComponentProps
           </div>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                htmlFor="profile-first-name"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 First name
               </label>
               <input
+                id="profile-first-name"
                 type="text"
                 name="firstName"
                 required
@@ -79,10 +87,14 @@ export default function Profile({ loaderData, actionData }: Route.ComponentProps
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                htmlFor="profile-last-name"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Last name
               </label>
               <input
+                id="profile-last-name"
                 type="text"
                 name="lastName"
                 required

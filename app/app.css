@@ -13,3 +13,16 @@ body {
     color-scheme: dark;
   }
 }
+
+/* Visible focus indicator for keyboard navigation. */
+@layer base {
+  button:focus-visible,
+  a:focus-visible,
+  select:focus-visible,
+  summary:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-blue-500);
+    outline-offset: 2px;
+  }
+}

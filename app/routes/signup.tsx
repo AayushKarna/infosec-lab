@@ -70,10 +70,14 @@ export default function Signup({ actionData }: Route.ComponentProps) {
         <Form ref={formRef} method="post" className="mt-4 space-y-4">
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                htmlFor="signup-first-name"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 First name
               </label>
               <input
+                id="signup-first-name"
                 type="text"
                 name="firstName"
                 required
@@ -82,10 +86,14 @@ export default function Signup({ actionData }: Route.ComponentProps) {
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+              <label
+                htmlFor="signup-last-name"
+                className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+              >
                 Last name
               </label>
               <input
+                id="signup-last-name"
                 type="text"
                 name="lastName"
                 required
@@ -95,10 +103,14 @@ export default function Signup({ actionData }: Route.ComponentProps) {
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="signup-email"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Email
             </label>
             <input
+              id="signup-email"
               type="email"
               name="email"
               required
@@ -107,10 +119,14 @@ export default function Signup({ actionData }: Route.ComponentProps) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="signup-password"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Password
             </label>
             <input
+              id="signup-password"
               type="password"
               name="password"
               required

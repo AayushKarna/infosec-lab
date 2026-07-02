@@ -14,10 +14,14 @@ export default function Md5() {
   return (
     <div className="max-w-3xl space-y-6">
       <div className="rounded-lg border border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
-        <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <label
+          htmlFor="md5-input"
+          className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+        >
           Message
         </label>
         <textarea
+          id="md5-input"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           rows={5}
@@ -28,9 +32,9 @@ export default function Md5() {
           updates as you type
         </p>
 
-        <label className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+        <p className="mt-4 mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
           MD5 digest (128 bits)
-        </label>
+        </p>
         <div className="rounded-md bg-gray-100 p-3 font-mono text-sm break-all text-gray-900 dark:bg-gray-800 dark:text-gray-100">
           {digest}
         </div>
@@ -43,8 +47,12 @@ export default function Md5() {
         <table className="w-full text-left text-sm">
           <thead>
             <tr className="text-xs text-gray-500 uppercase dark:text-gray-400">
-              <th className="pb-2 pr-4 font-semibold">Input</th>
-              <th className="pb-2 font-semibold">Digest</th>
+              <th scope="col" className="pb-2 pr-4 font-semibold">
+                Input
+              </th>
+              <th scope="col" className="pb-2 font-semibold">
+                Digest
+              </th>
             </tr>
           </thead>
           <tbody className="font-mono text-xs text-gray-700 dark:text-gray-300">

@@ -74,10 +74,14 @@ export default function ChangePassword({ actionData }: Route.ComponentProps) {
 
         <Form ref={formRef} method="post" className="mt-4 space-y-4">
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="current-password"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Current password
             </label>
             <input
+              id="current-password"
               type="password"
               name="currentPassword"
               required
@@ -86,10 +90,14 @@ export default function ChangePassword({ actionData }: Route.ComponentProps) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="new-password"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               New password
             </label>
             <input
+              id="new-password"
               type="password"
               name="newPassword"
               required
@@ -99,10 +107,14 @@ export default function ChangePassword({ actionData }: Route.ComponentProps) {
             />
           </div>
           <div>
-            <label className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="confirm-password"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Confirm new password
             </label>
             <input
+              id="confirm-password"
               type="password"
               name="confirmPassword"
               required
