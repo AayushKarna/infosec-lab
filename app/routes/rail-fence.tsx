@@ -9,9 +9,13 @@ export function meta({}: Route.MetaArgs) {
 const FENCE_LIMIT = 40;
 
 export default function RailFence() {
-  const [text, setText] = useState("");
+  // Each tab keeps its own input, so switching tabs preserves both.
+  const [texts, setTexts] = useState({ encrypt: "", decrypt: "" });
   const [rails, setRails] = useState(3);
   const [mode, setMode] = useState<"encrypt" | "decrypt">("encrypt");
+
+  const text = texts[mode];
+  const setText = (value: string) => setTexts((t) => ({ ...t, [mode]: value }));
 
   const result =
     mode === "encrypt" ? railFenceEncrypt(text, rails) : railFenceDecrypt(text, rails);
